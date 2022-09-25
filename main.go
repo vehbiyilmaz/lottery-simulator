@@ -21,7 +21,56 @@ func unique(intSlice []int) []int {
 	return list
 }
 
+func userInput(){
+
+	//lucky nummbers input 
+	var userNumbers[5] int 
+	var userNumber = 1
+
+	for i := 0; i < len(userNumbers); i++ {
+		
+		fmt.Println("Please enter your", i+1 , ". Lotto nummbers : >> ")
+		fmt.Scanf("%d", &userNumber)
+		
+		// Forcing to user give numbers between 1 and 50 
+		if userNumber <= 50 && userNumber > 0 {		
+			userNumbers[i] = userNumber
+		} else {
+		fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 50 ")
+		i--
+		}
+	}
+
+	//lucky STAR nummbers input 
+	var userStars[2] int 
+	var userStar int
+	
+	for i := 0; i < len(userStars); i++ {
+		
+		fmt.Println("Please enter your", i+1 , ". LOTTO STAR nummbers : >> ")
+		fmt.Scanf("%d", &userStar)
+		
+		// Forcing to user give numbers between 1 and 12 
+		if userStar <= 12 && userStar > 0 {		
+			userStars[i] = userStar
+		} else {
+		fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 12 ")
+		i--
+		}
+	}
+
+// Sorting all Values 
+sort.Ints(userNumbers[:])
+sort.Ints(userStars[:])
+
+// Display Luky and Star nummbers 
+fmt.Printf("your Lucky nummbers : \t %2d \t", userNumbers)
+fmt.Printf("your Lucky Star nummbers : \t%2d\n", userStars)
+}
+
 func main() {
+
+	userInput()
 	// random Lottery Nummbers MIN, MAX and UNIT value declaration
 	lotteryMin := 1
 	lotteryMax := 50
@@ -63,7 +112,7 @@ func main() {
 	sort.Ints(starUniqList)
 
 	// Display Winning Numbers
-	fmt.Println("Winning Nummbers : \t", lottaryUniqList)
-	fmt.Println("Winning Star Numbers : \t", starUniqList)
+	fmt.Printf("Winning Nummbers : \t %2d \t" , lottaryUniqList)
+	fmt.Printf("Winning Star Numbers : \t\t%2d\n", starUniqList)
 
 }
