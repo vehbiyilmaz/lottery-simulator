@@ -21,51 +21,54 @@ func unique(intSlice []int) []int {
 	return list
 }
 
-func userInput(){
+func userInput() {
 
-	//lucky nummbers input 
-	var userNumbers[5] int 
-	var userNumber = 1
+	//lucky nummbers input
+	var userNumbers [5]int
+	var userNumber int
 
 	for i := 0; i < len(userNumbers); i++ {
-		
-		fmt.Println("Please enter your", i+1 , ". Lotto nummbers : >> ")
+
+		fmt.Println("Please enter your", i+1, ". Lotto nummbers : >> ")
 		fmt.Scanf("%d", &userNumber)
-		
-		// Forcing to user give numbers between 1 and 50 
-		if userNumber <= 50 && userNumber > 0 {		
+
+		// Forcing to user give numbers between 1 and 50
+		if userNumber <= 50 && userNumber > 0 {
 			userNumbers[i] = userNumber
+
 		} else {
-		fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 50 ")
-		i--
+			fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 50 ")
+			i--
 		}
+
 	}
 
-	//lucky STAR nummbers input 
-	var userStars[2] int 
+	//lucky STAR nummbers input
+	var userStars [2]int
 	var userStar int
-	
+
 	for i := 0; i < len(userStars); i++ {
-		
-		fmt.Println("Please enter your", i+1 , ". LOTTO STAR nummbers : >> ")
+
+		fmt.Println("Please enter your", i+1, ". LOTTO STAR nummbers : >> ")
 		fmt.Scanf("%d", &userStar)
-		
-		// Forcing to user give numbers between 1 and 12 
-		if userStar <= 12 && userStar > 0 {		
+
+		// Forcing to user give numbers between 1 and 12
+		if userStar <= 12 && userStar > 0 {
 			userStars[i] = userStar
 		} else {
-		fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 12 ")
-		i--
+			fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 12 ")
+			i--
 		}
+
 	}
 
-// Sorting all Values 
-sort.Ints(userNumbers[:])
-sort.Ints(userStars[:])
+	// Sorting all Values
+	sort.Ints(userNumbers[:])
+	sort.Ints(userStars[:])
 
-// Display Luky and Star nummbers 
-fmt.Printf("your Lucky nummbers : \t %2d \t", userNumbers)
-fmt.Printf("your Lucky Star nummbers : \t%2d\n", userStars)
+	// Display Luky and Star nummbers
+	fmt.Printf("your Lucky nummbers : \t %2d \t", userNumbers)
+	fmt.Printf("your Lucky Star nummbers : \t%2d\n", userStars)
 }
 
 func main() {
@@ -107,12 +110,12 @@ func main() {
 		starUniqList = unique(starList)
 	}
 
-	// Sorting winnings random numbers
+	// Sorting winnings numbers
 	sort.Ints(lottaryUniqList)
 	sort.Ints(starUniqList)
 
 	// Display Winning Numbers
-	fmt.Printf("Winning Nummbers : \t %2d \t" , lottaryUniqList)
+	fmt.Printf("Winning Nummbers : \t %2d \t", lottaryUniqList)
 	fmt.Printf("Winning Star Numbers : \t\t%2d\n", starUniqList)
 
 }
