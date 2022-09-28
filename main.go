@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// Function that avoid double entries in WINNING Numbers Slices
+// avoid double entries during Random winning numbers generation 
 func unique(intSlice []int) []int {
 
 	keys := make(map[int]bool)
@@ -23,11 +23,12 @@ func unique(intSlice []int) []int {
 
 type void struct{}
 
-// missing compares two slices and returns slice of differences
+// compares two slices and returns matches
 func compare(a, b []int) []int {
 	// create map with length of the 'a' slice
 	ma := make(map[int]void, len(a))
 	matchs := []int{}
+
 	// Convert first slice to map with empty struct (0 bytes)
 	for _, ka := range a {
 		ma[ka] = void{}
@@ -41,19 +42,15 @@ func compare(a, b []int) []int {
 	return matchs
 }
 
-func userInput() {
-
-}
-
 func main() {
 
-	//lucky nummbers input
+	//User numbers input
 	var userNumbers [5]int
 	var userNumber int
 
 	for i := 0; i < len(userNumbers); i++ {
 
-		fmt.Printf("Please enter your %d. Lotto nummbers : >> ", i+1)
+		fmt.Printf("\nPlease enter your %d. Lotto nummbers : >> ", i+1)
 		fmt.Scanf("%d", &userNumber)
 
 		// Forcing to user give numbers between 1 and 50
@@ -68,7 +65,7 @@ func main() {
 
 	}
 
-	//lucky STAR nummbers input
+	//User STAR numbers input
 	var userStars [2]int
 	var userStar int
 
@@ -91,12 +88,12 @@ func main() {
 	sort.Ints(userNumbers[:])
 	sort.Ints(userStars[:])
 
-	// Display Luky and Star nummbers
+	// Display User numbers and User Star numbers
 	fmt.Printf("\n***********************************************************************\n\n")
 	fmt.Printf("YOUR NUMBERS :\t\t%2d\t", userNumbers)
 	fmt.Printf("YOUR STARS:\t%2d\n", userStars)
 
-	// random Lottery Nummbers MIN, MAX and UNIT value declaration
+	// random Lottery Numbers MIN, MAX and UNIT value declaration
 	lotteryMin := 1
 	lotteryMax := 50
 	lotteryUnits := 5
@@ -144,10 +141,8 @@ func main() {
 	comparedNumbers := compare(lottaryUniqList, userNumbers[:])
 	comparedStars:= compare(starUniqList, userStars[:])
 
+	// Display MATCHED Numbers
 	fmt.Printf("MATCHED LUCKY NUMBERS :\t%2d\n",comparedNumbers)
-
 	fmt.Printf("MATCHED LUCKY STARS :\t%2d\n\n", comparedStars)
 	fmt.Printf("***********************************************************************\n")
-	
-
 }
