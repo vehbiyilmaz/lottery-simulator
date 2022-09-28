@@ -21,7 +21,31 @@ func unique(intSlice []int) []int {
 	return list
 }
 
+type void struct{}
+
+// missing compares two slices and returns slice of differences
+func compare(a, b []int) []int {
+	// create map with length of the 'a' slice
+	ma := make(map[int]void, len(a))
+	matchs := []int{}
+	// Convert first slice to map with empty struct (0 bytes)
+	for _, ka := range a {
+		ma[ka] = void{}
+	}
+	// find matching values in a
+	for _, kb := range b {
+		if _, ok := ma[kb]; ok {
+			matchs = append(matchs, kb)
+		}
+	}
+	return matchs
+}
+
 func userInput() {
+
+}
+
+func main() {
 
 	//lucky nummbers input
 	var userNumbers [5]int
@@ -29,15 +53,16 @@ func userInput() {
 
 	for i := 0; i < len(userNumbers); i++ {
 
-		fmt.Println("Please enter your", i+1, ". Lotto nummbers : >> ")
+		fmt.Printf("Please enter your %d. Lotto nummbers : >> ", i+1)
 		fmt.Scanf("%d", &userNumber)
 
 		// Forcing to user give numbers between 1 and 50
 		if userNumber <= 50 && userNumber > 0 {
 			userNumbers[i] = userNumber
 
+			// Here we need AVOID DOUBLE ENTRIES FUNCTION
 		} else {
-			fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 50 ")
+			fmt.Printf("\nINVALID NUMMBER ! Please give a nummber between 1 and 50 \n\n")
 			i--
 		}
 
@@ -49,10 +74,10 @@ func userInput() {
 
 	for i := 0; i < len(userStars); i++ {
 
-		fmt.Println("Please enter your", i+1, ". LOTTO STAR nummbers : >> ")
+		fmt.Print("Please enter your \t", i+1, ". LOTTO STAR nummbers : >> ")
 		fmt.Scanf("%d", &userStar)
 
-		// Forcing to user give numbers between 1 and 12
+		// Forcing user to give only numbers between 1 and 12
 		if userStar <= 12 && userStar > 0 {
 			userStars[i] = userStar
 		} else {
@@ -67,13 +92,10 @@ func userInput() {
 	sort.Ints(userStars[:])
 
 	// Display Luky and Star nummbers
-	fmt.Printf("your Lucky nummbers : \t %2d \t", userNumbers)
-	fmt.Printf("your Lucky Star nummbers : \t%2d\n", userStars)
-}
+	fmt.Printf("\n***********************************************************************\n\n")
+	fmt.Printf("YOUR NUMBERS :\t\t%2d\t", userNumbers)
+	fmt.Printf("YOUR STARS:\t%2d\n", userStars)
 
-func main() {
-
-	userInput()
 	// random Lottery Nummbers MIN, MAX and UNIT value declaration
 	lotteryMin := 1
 	lotteryMax := 50
@@ -115,7 +137,17 @@ func main() {
 	sort.Ints(starUniqList)
 
 	// Display Winning Numbers
-	fmt.Printf("Winning Nummbers : \t %2d \t", lottaryUniqList)
-	fmt.Printf("Winning Star Numbers : \t\t%2d\n", starUniqList)
+	fmt.Printf("WINNING NUMBRES :\t%2d\t", lottaryUniqList)
+	fmt.Printf("WINNING STARS :\t%2d\n", starUniqList)
+	fmt.Printf("\n***********************************************************************\n\n")
+
+	comparedNumbers := compare(lottaryUniqList, userNumbers[:])
+	comparedStars:= compare(starUniqList, userStars[:])
+
+	fmt.Printf("MATCHED LUCKY NUMBERS :\t%2d\n",comparedNumbers)
+
+	fmt.Printf("MATCHED LUCKY STARS :\t%2d\n\n", comparedStars)
+	fmt.Printf("***********************************************************************\n")
+	
 
 }
