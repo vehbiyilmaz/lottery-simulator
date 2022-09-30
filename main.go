@@ -6,8 +6,7 @@ import (
 	"sort"
 	"time"
 )
-
-// avoid double entries during Random winning numbers generation 
+// avoid double entries 
 func unique(intSlice []int) []int {
 
 	keys := make(map[int]bool)
@@ -20,11 +19,11 @@ func unique(intSlice []int) []int {
 	}
 	return list
 }
-
-type void struct{}
-
 // compares two slices and returns matches
 func compare(a, b []int) []int {
+
+	type void struct{}
+
 	// create map with length of the 'a' slice
 	ma := make(map[int]void, len(a))
 	matchs := []int{}
@@ -45,43 +44,42 @@ func compare(a, b []int) []int {
 func main() {
 
 	//User numbers input
-	var userNumbers [5]int
+	userNumbers:= []int {}
 	var userNumber int
 
-	for i := 0; i < len(userNumbers); i++ {
-
-		fmt.Printf("\nPlease enter your %d. Lotto nummbers : >> ", i+1)
+	for i := 0; len(userNumbers) < 5; i++ {
+		fmt.Printf("\nPlease enter your %d. Lotto Number : ", cap(userNumbers)+1)
 		fmt.Scanf("%d", &userNumber)
-
+		
 		// Forcing to user give numbers between 1 and 50
-		if userNumber <= 50 && userNumber > 0 {
-			userNumbers[i] = userNumber
-
-			// Here we need AVOID DOUBLE ENTRIES FUNCTION
+		if userNumber <= 50 && userNumber > 0{
+			userNumbers = append(userNumbers, userNumber)
 		} else {
 			fmt.Printf("\nINVALID NUMMBER ! Please give a nummber between 1 and 50 \n\n")
 			i--
 		}
-
+		// remove double entries coused by user if exists
+		userNumbers = unique(userNumbers)		
 	}
 
 	//User STAR numbers input
-	var userStars [2]int
+	userStars:= []int{}
 	var userStar int
 
-	for i := 0; i < len(userStars); i++ {
+	for i := 0; len(userStars)<2; i++ {
 
-		fmt.Print("Please enter your \t", i+1, ". LOTTO STAR nummbers : >> ")
+		fmt.Printf("\nPlease enter your %d. Lotto Star number : ", cap(userStars)+1)
 		fmt.Scanf("%d", &userStar)
 
 		// Forcing user to give only numbers between 1 and 12
 		if userStar <= 12 && userStar > 0 {
-			userStars[i] = userStar
+			userStars = append(userStars, userStar)
 		} else {
 			fmt.Println("INVALID NUMMBER ! Please give a nummber between 1 and 12 ")
 			i--
 		}
-
+		// remove double entries coused by user if exists
+		userStars = unique(userStars)	
 	}
 
 	// Sorting all Values
@@ -139,10 +137,10 @@ func main() {
 	fmt.Printf("\n***********************************************************************\n\n")
 
 	comparedNumbers := compare(lottaryUniqList, userNumbers[:])
-	comparedStars:= compare(starUniqList, userStars[:])
+	comparedStars := compare(starUniqList, userStars[:])
 
 	// Display MATCHED Numbers
-	fmt.Printf("MATCHED LUCKY NUMBERS :\t%2d\n",comparedNumbers)
-	fmt.Printf("MATCHED LUCKY STARS :\t%2d\n\n", comparedStars)
+	fmt.Printf("MATCHING NUMBERS :\t%2d\n", comparedNumbers)
+	fmt.Printf("MATCHING STAR NUMBERS:\t%2d\n\n", comparedStars)
 	fmt.Printf("***********************************************************************\n")
 }

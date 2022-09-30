@@ -18,7 +18,7 @@ Propose of this Project is just to improve GoLang programing and Git & GitHub sk
 
 # todos 
 
-    1 - Avoid DOUBLE Value Entry for Nummbers and Star Nummbers given by user 
+    Clean Up code and work on  put user inputs in a func 
 
   
 
