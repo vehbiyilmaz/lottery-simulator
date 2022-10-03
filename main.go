@@ -6,9 +6,9 @@ import (
 	"sort"
 	"time"
 )
-// avoid double entries 
-func unique(intSlice []int) []int {
 
+// avoid double entries
+func unique(intSlice []int) []int {
 	keys := make(map[int]bool)
 	list := []int{}
 	for _, entry := range intSlice {
@@ -19,9 +19,10 @@ func unique(intSlice []int) []int {
 	}
 	return list
 }
+
 // compares two slices and returns matches
 func compare(a, b []int) []int {
-
+	//Empty Struct
 	type void struct{}
 
 	// create map with length of the 'a' slice
@@ -42,31 +43,30 @@ func compare(a, b []int) []int {
 }
 
 func main() {
-
 	//User numbers input
-	userNumbers:= []int {}
+	userNumbers := []int{}
 	var userNumber int
 
 	for i := 0; len(userNumbers) < 5; i++ {
 		fmt.Printf("\nPlease enter your %d. Lotto Number : ", cap(userNumbers)+1)
 		fmt.Scanf("%d", &userNumber)
-		
+
 		// Forcing to user give numbers between 1 and 50
-		if userNumber <= 50 && userNumber > 0{
+		if userNumber <= 50 && userNumber > 0 {
 			userNumbers = append(userNumbers, userNumber)
 		} else {
 			fmt.Printf("\nINVALID NUMMBER ! Please give a nummber between 1 and 50 \n\n")
 			i--
 		}
 		// remove double entries coused by user if exists
-		userNumbers = unique(userNumbers)		
+		userNumbers = unique(userNumbers)
 	}
 
 	//User STAR numbers input
-	userStars:= []int{}
+	userStars := []int{}
 	var userStar int
 
-	for i := 0; len(userStars)<2; i++ {
+	for i := 0; len(userStars) < 2; i++ {
 
 		fmt.Printf("\nPlease enter your %d. Lotto Star number : ", cap(userStars)+1)
 		fmt.Scanf("%d", &userStar)
@@ -79,7 +79,7 @@ func main() {
 			i--
 		}
 		// remove double entries coused by user if exists
-		userStars = unique(userStars)	
+		userStars = unique(userStars)
 	}
 
 	// Sorting all Values
