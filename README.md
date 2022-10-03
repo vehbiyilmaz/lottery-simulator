@@ -18,7 +18,7 @@ Propose of this Project is just to improve GoLang programing and Git & GitHub sk
 
 # todos 
 
-    Clean Up code and work on  put user inputs in a func 
+    add chek User nummers with all past 10 years Winning numbers and find out if given numbers won MILLION in the past. 
 
   
 
