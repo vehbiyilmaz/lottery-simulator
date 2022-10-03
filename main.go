@@ -139,7 +139,7 @@ func main() {
 	comparedNumbers := compare(lottaryUniqList, userNumbers[:])
 	comparedStars := compare(starUniqList, userStars[:])
 
-	// Display MATCHED Numbers
+	// Display MATCHING Numbers
 	fmt.Printf("MATCHING NUMBERS :\t%2d\n", comparedNumbers)
 	fmt.Printf("MATCHING STAR NUMBERS:\t%2d\n\n", comparedStars)
 	fmt.Printf("***********************************************************************\n")
