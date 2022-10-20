@@ -1,11 +1,16 @@
 package main
 
 import (
+	//"encoding/csv"
 	"fmt"
 	"math/rand"
+	//"os"
 	"sort"
 	"time"
+	//"log"
 )
+
+
 
 // avoid double entries
 func unique(intSlice []int) []int {
@@ -43,6 +48,11 @@ func compare(a, b []int) []int {
 }
 
 func main() {
+
+	//
+	                 
+	//                  
+
 	//User numbers input
 	userNumbers := []int{}
 	var userNumber int
